@@ -184,13 +184,13 @@ For live reloading and SASS compilation, refer to [Live reloading and SASS compi
 ![About Page](screenShots/About.png)
 
 ### Sign Up Page
-![Chart Page](screenShots/SignUP.png)
+![Chart Page](screenShots/SignUp.png)
 
 ### Sign In Page
 ![Chart Page](screenShots/SignIn.png)
 
 ### Chart Page (Authenticated)
-![Chart Page](screenShots/Chart.png)
+![Chart Page](screenShots/chart.png)
 
 
 ---

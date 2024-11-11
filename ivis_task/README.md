@@ -78,6 +78,10 @@ This application allows users to view historical GDP data interactively and prov
 
 5. **Set Up the Database**
 
+   You will need to set up a local database and add the connection details to the `.env` file. This Project uses PostgreSQL as the database, but you can use any other database supported by Django.
+
+    
+
    Run migrations to set up the database schema:
 
    ```bash
@@ -105,30 +109,14 @@ This application allows users to view historical GDP data interactively and prov
 
 ## Usage
 
-### API Authentication
+### Authentication
 
-To access the API, you need an API token:
-
-1. **Login to the Admin Panel** at `http://127.0.0.1:8000/admin/`.
-2. **Generate a Token** for your user by navigating to the **Tokens** section and creating one.
-
-Alternatively, you can obtain a token via the API by sending a POST request with your username and password to `/api/auth/`.
-
-Example request using `curl`:
-
-```bash
-curl -X POST -d "username=yourusername&password=yourpassword" http://127.0.0.1:8000/api/auth/
-```
+To access the chart page you have to be logged in for authentication. You can sign up for a new account or use the superuser account created earlier.
 
 ### Accessing the Chart Data API
 
-With your token, you can access the chart data API at `/api/chart-data/` by including the token in your request headers.
+You can access the chart data API at `/api/chart-data/` by including the token in your request headers.
 
-Example request using `curl`:
-
-```bash
-curl -H "Authorization: Token your_token_here" http://127.0.0.1:8000/api/chart-data/
-```
 
 ### Web Pages
 
@@ -142,7 +130,7 @@ curl -H "Authorization: Token your_token_here" http://127.0.0.1:8000/api/chart-d
 
 ### Setting Up Your Users
 
-- To create a **normal user account**, go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+- To create a **normal user account**, go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. This means the user is created and you can use it normaly. I have ommited the verification part for simplicity.
 
 - To create a **superuser account**, use this command:
 
@@ -190,13 +178,20 @@ For live reloading and SASS compilation, refer to [Live reloading and SASS compi
 ## Screenshots
 
 ### Home Page
-![Home Page](path/to/home_page_screenshot.png)
+![Home Page](screenShots/home.png)
 
 ### About Page
-![About Page](path/to/about_page_screenshot.png)
+![About Page](screenShots/About.png)
+
+### Sign Up Page
+![Chart Page](screenShots/SignUP.png)
+
+### Sign In Page
+![Chart Page](screenShots/SignIn.png)
 
 ### Chart Page (Authenticated)
-![Chart Page](path/to/chart_page_screenshot.png)
+![Chart Page](screenShots/Chart.png)
+
 
 ---
 

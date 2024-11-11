@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4">Welcome to the 3ivis GDP Data Visualization App</h1>
+        <p class="lead mt-4">Track and visualize historical GDP data interactively. Log in to access the latest data and explore trends over time.</p>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Interactive Charts</h5>
+                    <p class="card-text">Use interactive D3.js charts to explore data dynamically. Hover over data points to see detailed information.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">API Access</h5>
+                    <p class="card-text">Developers can retrieve chart data via our secure REST API, authenticated with token-based access.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Secure Login</h5>
+                    <p class="card-text">Access secure data with user authentication. Only logged-in users can view and interact with the data.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg">Log In</a>
+        {% if ACCOUNT_ALLOW_REGISTRATION %}
+            <a href="{% url 'account_signup' %}" class="btn btn-secondary btn-lg ml-3">Sign Up</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

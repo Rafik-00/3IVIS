@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4">About This Project</h1>
+        <p class="lead mt-3">A data visualization task developed for a position at 3ivis.</p>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h3>Purpose</h3>
+            <p>This application is designed to display historical GDP data interactively, allowing users to analyze economic trends over time. The project demonstrates core skills in building RESTful APIs, frontend data visualization with D3.js, and secure authentication.</p>
+        </div>
+        <div class="col-md-6">
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Data Visualization:</strong> Interactive line charts rendered with D3.js</li>
+                <li><strong>API Access:</strong> RESTful API with token-based authentication to retrieve chart data</li>
+                <li><strong>Secure Authentication:</strong> Only authenticated users can access the chart page</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h3>About 3ivis</h3>
+            <p>The fascinating speed of advances in the field of artificial intelligence together with their increasingly open source nature, has become a key ingredient for companies to gain competitive advantage and hence strategically position themselves for the future.
+
+                With the vision of “Intelligence-driven future”, we partner with companies in Banking, Financial Services and Insurance to provide the full value chain across development, deployment, maintenance, as well as independent review of machine learning and quantitative models.</p>
+        </div>
+        <div class="col-md-6">
+            <h3>Technical Stack</h3>
+            <ul>
+                <li>Django and Django REST Framework for backend</li>
+                <li>D3.js for interactive data visualization</li>
+                <li>Bootstrap for responsive and attractive design</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock content %}

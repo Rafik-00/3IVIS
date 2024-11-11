@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  German GDP Chart
+{% endblock title %}
+
+{% block content %}
+    <h1 style="margin-top: 20px;">German GDP (2014 - 2023)</h1>
+    <div id="chart-container">
+        <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nvd3@1.8.6/build/nv.d3.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nvd3@1.8.6/build/nv.d3.min.css">
+    
+    <style>
+        /* Center and dynamically size the chart container */
+        #chart-container {
+            width: 90vw; /* 90% of viewport width */
+            height: 60vh; /* 60% of viewport height */
+            max-width: 1200px; /* Prevent over-expanding on large screens */
+            max-height: 800px; /* Prevent over-expanding height */
+            margin: 0 auto; /* Centers the chart container horizontally */
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            display: block;
+        }
+    </style>
+
+    <script type="text/javascript">
+        // Fetch chart data from the backend API
+        fetch('/api/chart-data/')
+            .then(response => response.json())
+            .then(data => {
+                console.log("Received data:", data);
+                if (data && data.labels && data.values) {
+                    // Format the data for the chart
+                    var chartData = data.labels.map(function(label, index) {
+                        return { x: index, y: data.values[index] };
+                    });
+                    // Select the SVG element in the chart container
+                    var svg = d3.select("#chart-container svg");
+                    // Create the line chart with equal left and right margins
+                    var chart = nv.models.lineChart()
+                        .margin({ left: 60, right: 60, bottom: 50, top: 20 }) // Equal margins for left and right
+                        .useInteractiveGuideline(true)
+                        .x(function(d) { return d.x; })
+                        .y(function(d) { return d.y; })
+                        .showLegend(true)
+                        .showYAxis(true)
+                        .showXAxis(true);
+                    
+                    // Set up x-axis with proper labels
+                    chart.xAxis
+                        .axisLabel('Year')
+                        .tickFormat(function(d) {
+                            return data.labels[d];
+                        });
+                    
+                    // Set up y-axis formatting
+                    chart.yAxis
+                        .axisLabel('GDP (Billions)')
+                        .tickFormat(d3.format('.0f'));
+                    
+                    // Adjust legend alignment and padding
+                    chart.legend
+                        .rightAlign(true)
+                        .padding(10);
+
+                    // Bind data to chart and render it
+                    svg.datum([{
+                        key: 'German GDP',
+                        values: chartData
+                    }]).call(chart);
+                    
+                    // Adjust chart on window resize
+                    nv.utils.windowResize(chart.update);
+                } else {
+                    console.error('Error: Missing or incorrect data format');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching chart data:', error);
+            });
+    </script>
+{% endblock content %}
